@@ -5,6 +5,7 @@ const rateLimit = require("express-rate-limit");
 const chatRoutes = require("./routes/chat.js");
 
 const app = express();
+const PORT = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
@@ -16,4 +17,6 @@ app.use(rateLimit({
 
 app.use("/api", chatRoutes);
 
-app.listen(5000, () => console.log("Server running on port 5000"));
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
