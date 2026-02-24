@@ -9,10 +9,13 @@ const PORT = process.env.PORT || 5000;
 
 app.use(cors({
   origin: [
-    "http://localhost:5173",
-    "https://ai-support-assistant-nu.vercel.app/"
-  ]
+    "http://localhost:5173", // for local dev
+    "https://ai-support-assistant-nu.vercel.app" // your vercel frontend
+  ],
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
 }));
+
 app.use(express.json());
 
 app.use(rateLimit({
