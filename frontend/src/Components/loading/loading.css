@@ -1,0 +1,39 @@
+.loading-message{
+    background-color:rgba(128, 128, 128, 0.409);
+    width:300px;
+    height:50px;
+    position: relative;
+    overflow: hidden;
+    padding:4px;
+    border-radius:3px;
+}
+.loading-message strong{
+  color:red;
+}
+.loading-message strong{
+    font-size:.9rem;
+}
+.loading-message div{
+    font-size:.8rem;
+}
+.loading-message::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,0.4),
+    transparent
+  );
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  100% {
+    left: 100%;
+  }
+}
