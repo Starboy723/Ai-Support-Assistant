@@ -3,10 +3,10 @@ import "./sidebar.css";
 
 function Sidebar({ onSelectSession,isOpen,refresh,setRefresh}) {
   const [sessions, setSessions] = useState([]);
-  
+   const API = import.meta.env.VITE_API_URL;
   // Fetch sessions from backend
   useEffect(() => {
-    fetch("http://localhost:5000/api/sessions")
+    fetch(`${API}/api/sessions`)
       .then(res => res.json())
       .then(data => setSessions(data))
       .catch(err => console.error(err));
@@ -15,7 +15,7 @@ function Sidebar({ onSelectSession,isOpen,refresh,setRefresh}) {
   async function deleteSessions(){
     setRefresh(prev=>prev+1);
     try{
-     await fetch("http://localhost:5000/api/sessions", {
+     await fetch(`${API}/api/sessions`, {
       method: "DELETE"
     });
   }

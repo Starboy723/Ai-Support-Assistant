@@ -12,7 +12,7 @@ const Chat = () => {
   const [isOpen,setIsOpen]=useState(false);
   const [refersh,setRefresh]=useState(0);
   const endRef = useRef(null);
- 
+  const API = import.meta.env.VITE_API_URL;
 
   const [sessionId, setSessionId] = useState(() => {
   let storedSession = localStorage.getItem("sessionId");
@@ -29,7 +29,7 @@ const Chat = () => {
   useEffect(() => {
     if (!sessionId) return;
 
-    fetch(`http://localhost:5000/api/conversations/${sessionId}`)
+    fetch(`${API}/api/conversations/${sessionId}`)
       .then(res => res.json())
       .then(data => setMessages(data))
       .catch(err => console.error("Fetch error:", err));
@@ -46,7 +46,7 @@ const Chat = () => {
     setLoading(true);
 
     try {
-      const res = await fetch("http://localhost:5000/api/chat", {
+      const res = await fetch(`${API}/api/chat`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
